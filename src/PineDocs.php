@@ -114,8 +114,17 @@
 				self::$config->mathjax_configuration = '';
 			}
 
+			if (!isset(self::$config->enable_mermaidjs)) {
+				self::$config->enable_mermaidjs = false;
+			}
+
+			if (!isset(self::$config->mermaidjs_theme) || (empty(self::$config->highlight_theme))) {
+				self::$config->mermaidjs_theme = 'default';
+			}
+
 			// Load Marked configuration
 			self::$config->marked_configuration = self::load_config_marked();
+
 		}
 
 

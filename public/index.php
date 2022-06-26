@@ -107,6 +107,8 @@
 			'enable_mathjax' => PineDocs::$config->enable_mathjax,
 			'mathjax_configuration' => PineDocs::$config->mathjax_configuration,
 			'marked_configuration' => PineDocs::$config->marked_configuration,
+			'enable_mermaidjs' => PineDocs::$config->enable_mermaidjs,
+			'mermaidjs_theme' => PineDocs::$config->mermaidjs_theme,
 		),
 		'errors' => PineDocs::$errors,
 	);
