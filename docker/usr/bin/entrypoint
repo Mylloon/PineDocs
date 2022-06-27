@@ -19,6 +19,7 @@ if [ ! -f /data/pinedocs/config/marked.js ]; then
         mkdir -p /data/pinedocs/config
         cp /app/pinedocs/config/marked-example.js /data/pinedocs/config/marked.js
         echo 'Created marked.js config file.'
+fi
 
 # Custom.css config
 if [ ! -f /data/pinedocs/config/custom.css ]; then
