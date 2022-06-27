@@ -134,7 +134,12 @@ $(function() {
 						return // continue.
 					}
 
-					const url = self.get_asset_path(data.relative_path, block.src)
+					const url = self.get_asset_path(data.relative_path, block.attributes.src.value)
+					if (url == "#") {
+						// URL asks for an inaccessible path
+						return // continue.
+					}
+
 					if (self.black_list[url]) {
 						// URL already called and we know it doesn't exists.
 						return // continue.
@@ -146,7 +151,7 @@ $(function() {
 					}
 
 					// Reset the "src" so the browser doesn't try to load the file, and ignore the file after ajax.
-					block.src= '#'
+					block.src = '#'
 
 					// URL is neither loaded or blacklisted.
 					$.ajax({
@@ -595,11 +600,41 @@ $(function() {
 
 	// Get asset path
 	PineDocs.prototype.get_asset_path = function(file_path, asset_path) {
-		const base = /(.*\/)/g.exec(file_path)
-		let url = new URL(asset_path)
-		url = url.pathname.slice(1)
+		// Path to file
+		let base = /(.*\/)/g.exec(file_path)
 		if (base !== null) {
-			url = base[0] + url
+			base = base[0].slice(0, -1)
+		} else {
+			base = ""
+		}
+
+		// Final URL
+		let url = "#"
+
+		// Count the number of available parent files
+		let available_parents = base.split('/').length
+
+		// Count the number of times we have to go to the parent folder to find the file
+		let requested_parents = asset_path.split('../').length - 1
+
+		// Check if file is available
+		if (available_parents >= requested_parents) {
+			if (available_parents == requested_parents) {
+				// If file is at the root of content_dir
+				base = ""
+				asset_path = asset_path.replaceAll('../', '')
+			} else {
+				// Goes up the directories
+				while (requested_parents > 0) {
+					base = base.split('/')
+					base.pop()
+					base = base.join('/')
+					asset_path = asset_path.split("../").join("")
+					requested_parents--
+				}
+			}
+
+			url = base + "/" + asset_path
 		}
 
 		return url
