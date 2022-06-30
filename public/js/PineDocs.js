@@ -43,6 +43,7 @@ $(function() {
 		self.loaded = {}
 		self.black_list = {}
 		self.scroll_top = {}
+		self.hljs_plugin_loaded = false
 
 		// Init
 		self.set_events()
@@ -88,8 +89,13 @@ $(function() {
 		filesize.text(format_bytes(data.filesize))
 		self.elements.content_path.append(filesize)
 
-		// Copy button
-		hljs.addPlugin(new CopyButtonPlugin())
+		// HLJS Plugins
+		if (!self.hljs_plugin_loaded) {
+			self.hljs_plugin_loaded = true
+
+			// Copy button in codeblocks
+			hljs.addPlugin(new CopyButtonPlugin())
+		}
 
 		// Render content
 		if (data.download_link === true) {
