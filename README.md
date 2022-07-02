@@ -152,6 +152,8 @@ You can :
 
 - **`enable_mermaidjs`** (bool) Enable MermaidJS. Default is `false`.
 
+- **`theme_mermaidjs`** (string) The theme of MermaidJS to use by default. Default is `default`.
+
 ## License
 
 GNU GPLv3. See LICENSE.txt
