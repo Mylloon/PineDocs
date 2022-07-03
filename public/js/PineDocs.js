@@ -140,6 +140,11 @@ $(function() {
 						return // continue.
 					}
 
+					if(block.attributes.src.value.includes("http")) {
+						// asset isn't local
+						return // continue.
+					}
+
 					const url = self.get_asset_path(data.relative_path, block.attributes.src.value)
 					if (url == "#") {
 						// URL asks for an inaccessible path
@@ -618,7 +623,7 @@ $(function() {
 		let url = "#"
 
 		// Count the number of available parent files
-		let available_parents = base.split('/').length
+		const available_parents = base.split('/').length
 
 		// Count the number of times we have to go to the parent folder to find the file
 		let requested_parents = asset_path.split('../').length - 1
