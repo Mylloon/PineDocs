@@ -51,7 +51,7 @@ body {
 
 
 
-/* MENU ICONS */
+/*** MENU ICONS ***/
 #menu i.fa {
 	color: #999;
 }
@@ -92,6 +92,7 @@ blockquote {
 	border-color: #f83;
 	color: #999;
 }
+
 
 
 /*** SEARCH ***/

@@ -53,7 +53,7 @@ body {
 
 
 
-/* MENU ICONS */
+/*** MENU ICONS ***/
 #menu i.fa {
 	color: rgba(0, 0, 0, 0.2);
 }
@@ -90,6 +90,7 @@ blockquote {
 	border-color: #ddd;
 	color: #999;
 }
+
 
 
 /*** SEARCH ***/
